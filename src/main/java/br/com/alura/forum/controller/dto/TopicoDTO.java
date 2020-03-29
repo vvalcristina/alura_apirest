@@ -1,0 +1,44 @@
+package br.com.alura.forum.controller.dto;
+
+import br.com.alura.forum.model.Topico;
+
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class TopicoDTO {
+
+    private Long id;
+    private String tituto;
+    private String mensagem;
+    private LocalDateTime dataCriacao;
+
+    public TopicoDTO(Topico topico){
+        this.id = topico.getId();
+        this.tituto = topico.getTitulo();
+        this.mensagem = topico.getMensagem();
+        this.dataCriacao = topico.getDataCriacao();
+
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getTitulo() {
+        return tituto;
+    }
+
+    public String getMensagem() {
+        return mensagem;
+    }
+
+    public LocalDateTime getDataCriacao() {
+        return dataCriacao;
+    }
+
+    public static List<TopicoDTO> converter(List<Topico> topicos) {
+        return topicos.stream().map(TopicoDTO::new).collect(Collectors.toList());
+
+    }
+}
